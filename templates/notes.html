@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Notes</title>
+</head>
+<body style="font-family: Arial; max-width: 600px; margin: 40px auto; background: #121212; color: white; line-height: 1.6;">
+    
+    <!-- Navigation Bar -->
+    <nav style="margin-bottom: 20px;">
+        <a href="/" style="color: #60a5fa; margin-right: 15px; font-weight: bold;">🏠 Dashboard</a>
+        <a href="/notes" style="color: #60a5fa; font-weight: bold;">📝 My Notes</a>
+    </nav>
+
+    <h1>📝 My Quick Notes</h1>
+
+    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <form method="POST">
+            <input type="text" name="note" placeholder="Write a task or note..." required style="width: 70%; padding: 8px; border-radius: 4px; border: none;">
+            <button type="submit" style="padding: 8px 14px; background: #16a34a; color: white; border: none; border-radius: 4px; cursor: pointer;">Add Note</button>
+        </form>
+    </div>
+
+    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px;">
+        <h3>Saved Notes:</h3>
+        <ul style="list-style: none; padding: 0;">
+            {% for item in notes_list %}
+                <li style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; background: #262626; padding: 8px 12px; border-radius: 6px;">
+                    <span>{{ item }}</span>
+                    <form method="POST" action="/delete/{{ loop.index0 }}" style="margin: 0;">
+                        <button type="submit" style="background: #dc2626; color: white; border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer;">❌</button>
+                    </form>
+                </li>
+            {% else %}
+                <p style="color: #9ca3af;">No notes yet. Add one above!</p>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

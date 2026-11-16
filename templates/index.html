@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Daily Briefing</title>
+</head>
+<body style="font-family: Arial; max-width: 600px; margin: 40px auto; background: #121212; color: white; line-height: 1.6;">
+    
+    <!-- Navigation Bar -->
+    <nav style="margin-bottom: 20px;">
+        <a href="/" style="color: #60a5fa; margin-right: 15px; font-weight: bold;">🏠 Dashboard</a>
+        <a href="/notes" style="color: #60a5fa; font-weight: bold;">📝 My Notes</a>
+    </nav>
+
+    <h1>🌍 My Daily Briefing</h1>
+
+    <!-- Currency Card -->
+    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <p>💱 <b>Exchange Rate:</b> 1 USD = {{ kes }} KES</p>
+        <form method="POST">
+            <input type="number" step="any" name="usd" placeholder="Enter USD amount" required style="padding: 8px; border-radius: 4px; border: none;">
+            <button type="submit" style="padding: 8px 14px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer;">Convert to KES</button>
+        </form>
+        {% if converted_text %}
+            <p style="color: #4ade80;"><b>{{ converted_text }}</b></p>
+        {% endif %}
+    </div>
+
+    <!-- Weather Card with City Search -->
+    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <p>🌤️ <b>{{ city_label }} Weather:</b> {{ weather_text }}</p>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Search another city (e.g. Nairobi)" required style="padding: 8px; border-radius: 4px; border: none;">
+            <button type="submit" style="padding: 8px 14px; background: #0891b2; color: white; border: none; border-radius: 4px; cursor: pointer;">Check Weather</button>
+        </form>
+    </div>
+
+    <!-- Clickable News Card -->
+    <div style="background: #1e1e1e; padding: 15px; border-radius: 8px;">
+        <h3>📰 Top Tech News</h3>
+        <ul>
+            {% for story in stories %}
+                <li style="margin-bottom: 8px;">
+                    <a href="{{ story.url }}" target="_blank" style="color: #93c5fd; text-decoration: none;">{{ story.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
